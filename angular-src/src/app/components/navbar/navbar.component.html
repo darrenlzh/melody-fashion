@@ -10,18 +10,23 @@
         <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
       </li>
       <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link" [routerLink]="['/catalog']">Catalog</a>
+      </li>
+      <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" class="nav-item">
         <a class="nav-link" [routerLink]="['/profile']">Profile</a>
       </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">
       <li *ngIf="!authService.loggedIn()" class="nav-item">
-        <a class="nav-link" [routerLink]="['/login']">Login</a>
+        <a class="nav-link" [routerLink]="['/login']">
+          <i class="fas fa-sign-in-alt"></i>Login</a>
       </li>
       <li *ngIf="!authService.loggedIn()" class="nav-item">
         <a class="nav-link" [routerLink]="['/register']">Register</a>
       </li>
       <li *ngIf="authService.loggedIn()" class="nav-item">
-        <a class="nav-link" (click)="onLogoutClick()" href="#">Logout</a>
+        <a class="nav-link" (click)="onLogoutClick()" href="#">
+          <i class="fa fa-sign-out-alt"></i>Logout</a>
       </li>
     </ul>
   </div>
