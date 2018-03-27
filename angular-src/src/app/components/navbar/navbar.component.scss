@@ -1,5 +1,11 @@
-.navbar .navbar-nav {
-  .nav-item svg {
-    margin-right: 8px;
+.navbar {
+  .container {
+    margin-top: 0;
+  }
+
+  .navbar-nav {
+    .nav-item svg {
+      margin-right: 8px;
+    }
   }
 }

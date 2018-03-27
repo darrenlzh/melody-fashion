@@ -1,2 +1,22 @@
 <h2 class="page-header">Catalog</h2>
 <p>Welcome to the catalog!</p>
+
+<form (submit)="onAddProductSubmit()">
+  <div class="form-group">
+    <label>Product ID</label>
+    <input type="text" class="form-control" [(ngModel)]="productId" name="productId">
+  </div>
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" [(ngModel)]="name" name="name">
+  </div>
+  <div class="form-group">
+    <label>Category</label>
+    <input type="text" class="form-control" [(ngModel)]="category" name="category">
+  </div>
+  <div class="form-group">
+    <label>Quantity</label>
+    <input type="text" class="form-control" [(ngModel)]="quantity" name="quantity">
+  </div>
+  <button type="submit" class="btn btn-primary">Add New</button>
+</form>

@@ -11,12 +11,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
-import { CatalogComponent } from './components/catalog/catalog.component';
+import { CatalogService } from './services/catalog.service';
+import { FileUploadClientService } from './services/file-client.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -45,7 +47,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService, AuthGuard],
+  providers: [ValidateService, AuthService, AuthGuard, CatalogService, FileUploadClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
