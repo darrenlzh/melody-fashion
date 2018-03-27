@@ -19,7 +19,9 @@
       "styles": [
         "sass/main.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "js/fontawesome-all.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
