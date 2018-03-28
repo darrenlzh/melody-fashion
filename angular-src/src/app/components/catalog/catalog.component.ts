@@ -14,6 +14,7 @@ export class CatalogComponent implements OnInit {
   name: String;
   category: String;
   quantity: Number;
+  catalog: Array<Object>;
 
   constructor(
     private catalogService: CatalogService,
@@ -22,6 +23,16 @@ export class CatalogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // this.catalogService.getProduct(1).subscribe(data => {
+    //   console.log(data.product);
+    // }, err => {
+    //   console.log(err);
+    //   return false;
+    // });
+    this.catalogService.getCatalog().subscribe(data => {
+      this.catalog = data.catalog;
+      console.log(data.catalog);
+    })
   }
 
   onAddProductSubmit() {
@@ -40,6 +51,12 @@ export class CatalogComponent implements OnInit {
         this.flashMessage.show('Something went wrong. Try adding product again.', {cssClass: 'alert-danger', timeout: 3000});
       }
     });
+
+    // Reset form
+    this.productId = null;
+    this.name = '';
+    this.category = '';
+    this.quantity = null;
   }
 
 }

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('passport')
+const jwt = require('jsonwebtoken')
 const config = require('../config/database')
 
 const Product = require('../models/product')
@@ -23,9 +24,43 @@ router.post('/add', (req, res, next) => {
   })
 })
 
-// // Profile
-// router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
-//   res.json({ user: req.user })
-// })
+// Get catalog
+router.get('/catalog', (req, res, next) => {
+  Product.getCatalog((err, products) => {
+    if (err) throw err
+    if (!products) {
+      return res.json({ success: false, msg: 'Catalog is empty' })
+    }
+
+    let productsMap = []
+
+    products.forEach(function(product) {
+      // productsMap[product.productId] = product
+      productsMap.push(product)
+    })
+
+    res.json({
+      success: true,
+      catalog: productsMap
+    })
+  })
+})
+
+// Get Product by ID
+router.get('/product/id/:id', (req, res, next) => {
+  Product.getProductById(req.params.id, (err, product) => {
+    if (err) throw err
+    if (!product) {
+      return res.json({ success: false, msg: 'Product not found' })
+    }
+    res.json({
+      success: true,
+      product: {
+        productId: product.productId,
+        name: product.name
+      }
+    })
+  })
+})
 
 module.exports = router

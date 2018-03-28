@@ -1,5 +1,29 @@
 <h2 class="page-header">Catalog</h2>
-<p>Welcome to the catalog!</p>
+
+<div class="catalog-list table">
+	<div class="product col-md-4"></div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Inventory</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of catalog">
+      <th scope="row">{{ product.productId }}</th>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Add New Product</h3>
 
 <form (submit)="onAddProductSubmit()">
   <div class="form-group">

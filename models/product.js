@@ -23,9 +23,13 @@ const ProductSchema = mongoose.Schema({
 
 const Product = module.exports = mongoose.model('Product', ProductSchema)
 
-module.exports.getProductById = function(product, callback) {
+module.exports.getProductById = function(productId, callback) {
   const query = {productId: productId}
   Product.findOne(query, callback)
+}
+
+module.exports.getCatalog = function(callback) {
+  Product.find({}, callback);
 }
 
 module.exports.addProduct = function(newProduct, callback) {
