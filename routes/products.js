@@ -6,6 +6,8 @@ const config = require('../config/database')
 
 const Product = require('../models/product')
 
+const AWS = require('aws-sdk')
+
 // Add Product
 router.post('/add', (req, res, next) => {
   let newProduct = new Product({
@@ -60,6 +62,30 @@ router.get('/product/id/:id', (req, res, next) => {
         name: product.name
       }
     })
+  })
+})
+
+// Upload file
+router.post('/upload', (req, res, next) => {
+  const spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com')
+  const s3 = new AWS.S3({
+    endpoint: spacesEndpoint
+  })
+  let params = {
+    Body: "The contents of the file",
+    Bucket: "darren-test",
+    Key: "file6.txt"
+  }
+
+  s3.putObject(params, function(err, data) {
+    if (err) console.log(err, err.stack)
+    else {
+      console.log(data)
+      res.json({
+        success: true,
+        msg: 'File uploaded'
+      })
+    }
   })
 })
 

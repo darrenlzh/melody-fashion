@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
+import host from 'config';
 
 @Injectable()
 export class AuthService {
@@ -13,13 +14,13 @@ export class AuthService {
   registerUser(user) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/register', user, {headers: headers}).map(res => res.json());
+    return this.http.post(`${host}/users/register`, user, {headers: headers}).map(res => res.json());
   }
 
   authenticateUser(user) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/authenticate', user, {headers: headers}).map(res => res.json());
+    return this.http.post(`${host}/users/authenticate`, user, {headers: headers}).map(res => res.json());
   }
 
   getProfile() {
@@ -27,7 +28,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/profile', {headers: headers}).map(res => res.json());
+    return this.http.get(`${host}/users/profile`, {headers: headers}).map(res => res.json());
   }
 
   storeUserData(token, user) {

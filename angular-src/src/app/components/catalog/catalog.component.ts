@@ -23,16 +23,13 @@ export class CatalogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.catalogService.getProduct(1).subscribe(data => {
-    //   console.log(data.product);
-    // }, err => {
-    //   console.log(err);
-    //   return false;
-    // });
     this.catalogService.getCatalog().subscribe(data => {
       this.catalog = data.catalog;
-      console.log(data.catalog);
+      // console.log(data.catalog);
     })
+    // this.catalogService.uploadFile().subscribe(data => {
+    //   console.log(data);
+    // });
   }
 
   onAddProductSubmit() {
@@ -47,6 +44,7 @@ export class CatalogComponent implements OnInit {
     this.catalogService.addProduct(product).subscribe(data => {
       if (data.success) {
         this.flashMessage.show('New Product has been added!', {cssClass: 'alert-success', timeout: 3000});
+        this.catalog.push(product);
       } else {
         this.flashMessage.show('Something went wrong. Try adding product again.', {cssClass: 'alert-danger', timeout: 3000});
       }
@@ -57,6 +55,8 @@ export class CatalogComponent implements OnInit {
     this.name = '';
     this.category = '';
     this.quantity = null;
+
+
   }
 
 }
