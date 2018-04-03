@@ -34,10 +34,10 @@ export class CatalogService {
     }
   }
 
-  uploadFile() {
+  uploadFiles(formData) {
     let headers = new Headers();
-    headers.append('Content-Type', 'text/plain');
-    return this.http.post(`${host}/products/upload`, {headers: headers}).map(res => res.json());
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.http.post(`${host}/products/upload`, formData).map(res => res.json());
   }
 
 }

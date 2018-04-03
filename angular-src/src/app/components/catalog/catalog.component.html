@@ -42,5 +42,11 @@
     <label>Quantity</label>
     <input type="text" class="form-control" [(ngModel)]="quantity" name="quantity">
   </div>
+	<div class="form-group">
+		<input type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple />
+		<button type="button" class="btn btn-success btn-s" (click)="upload()">
+    	<i class="far fa-cloud-upload"></i>&nbsp;Upload
+		</button>
+	</div>
   <button type="submit" class="btn btn-primary">Add New</button>
 </form>

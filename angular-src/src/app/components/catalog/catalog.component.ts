@@ -15,6 +15,7 @@ export class CatalogComponent implements OnInit {
   category: String;
   quantity: Number;
   catalog: Array<Object>;
+  filesToUpload: Array<File> = [];
 
   constructor(
     private catalogService: CatalogService,
@@ -23,6 +24,9 @@ export class CatalogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+
+
     this.catalogService.getCatalog().subscribe(data => {
       this.catalog = data.catalog;
       // console.log(data.catalog);
@@ -57,6 +61,23 @@ export class CatalogComponent implements OnInit {
     this.quantity = null;
 
 
+  }
+
+  upload() {
+    const formData: any = new FormData();
+    const files: Array<File> = this.filesToUpload;
+
+    console.log(files);
+
+    for(let i =0; i < files.length; i++){
+      formData.append("uploads", files[i], files[i]['name']);
+    }
+
+    this.catalogService.uploadFiles(formData).subscribe(result => console.log(result));
+  }
+
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 
 }
